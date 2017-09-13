@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TinyApp</title>
+  <%include ./partials/headers.ejs%>
+</head>
+<body>
+    <div style="background: #ffa8bc; front=size:16px; padding:50px;"><h1><strong> Shortened URLs</strong></h1>
+        <ul>
+          <%for(var key in urls) {%>
+            <%=urls[key]%>
+          <%}%>
+        </ul></td>
+        <td><a><a href = "www.deadlink.com">shortenURL</a></td>
+      </tr>
+</body>
+</html>
