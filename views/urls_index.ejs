@@ -12,8 +12,8 @@
     <strong>Fresh Cuts</strong></h1>
         <ul>
           <%for(var key in urls) {%>
-            <%=urls[key]%>
-            <form method="POST" action=<% "/urls/" + key + "/delete"%>>
+            <%=key + ' ☜-(ΘLΘ)-☞ ' + urls[key]%>
+            <form method="POST" action=<%= "/urls/" + key + "/delete"%>>
             <button style="background:#ffddd5" class="button" style="vertical-align:middle"><span>Delete (ノಠ益ಠ)ノ彡┻━┻</span></button>
             </form>
             <form method="POST" action=<%= "/urls/" + key%>>
