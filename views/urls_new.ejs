@@ -2,18 +2,48 @@
 <html lang="en">
 <head>
   <%include ./partials/head.ejs%>
+<style>
+body {
+  background-image: url("http://images2.fanpop.com/image/photos/9600000/goku-vs-vegeta-dragon-ball-z-9658056-424-262.gif");
+}
+</style>
 </head>
 <body class="container">
   <header>
   <%include ./partials/headers.ejs%>
   </header>
   <main>
-    <div style="background:#d5ffdd" class="jumbotron"><h1>
+
+    <div class="row">
+
+     <div class="col-sm-4">
+
+      <div  style="background:transparent" class="well">
+        <% if(username !== undefined){ %>
+            <h5>Your username is: <%= username %></h5>
+              <form action="/logout" method="POST" style="margin:10px;">
+                <button style="background:#edd6ff" type="submit" value="Submit" class="btn btn-outline-primary"> (◕︵◕) Logout (◕︵◕)</button>
+              </form>
+          <% } else{ %>
+            <form action="/login" method="POST" style="margin:10px;">
+              <label for="username">Login:</label>
+              <input id="username" type="text" name="username" placeholder="username" style="width: 300px">
+              <button style="background:#edd6ff" type="submit" value="Submit"class="btn btn-outline-primary">Enter</button>
+            </form>
+          <% } %>
+
+      </div>
+
+    </div>
+
+  <div class="col-sm-8">
+
+    <div style="background:#d6faff" class="jumbotron"><h1>
     <strong>ᕙ(⇀‸↼‶)ᕗ Choppin Them URLs Like Karate</strong></h1>
 
    <body style="font-size:20px; padding:50px;">
     <form action="/urls" method="POST" style="margin:150px;">
-      <label for="longURL">Enter a URL:</label>
+      <label for="longURL">Square up Cuz:enter URL</label>
       <input class="searchBar" id="longURL" type="text" name="longURL" placeholder="http://" style="width: 300px">
       <button class="button" style="vertical-align:middle"><span>Submit</span></button>
     </form>
@@ -26,3 +56,4 @@
   <footer>
   </footer>
 </body>
+

@@ -2,28 +2,66 @@
 <html lang="en">
 <head>
   <%include ./partials/head.ejs%>
+<style>
+body {
+  background-image: url("https://i.pinimg.com/originals/cd/58/3a/cd583ae0ba572e1a84846e5c5d30eb08.gif");
+  background-size: cover;
+}
+</style>
 </head>
 <body class="container">
   <header>
   <%include ./partials/headers.ejs%>
   </header>
   <main>
-    <div style="background:#d5ffdd" class="jumbotron"><h1>
-    <strong>Fresh Cuts</strong></h1>
-        <ul>
-          <%for(var key in urls) {%>
-            <%=key + ' ☜-(ΘLΘ)-☞ ' + urls[key]%>
-            <form method="POST" action=<%= "/urls/" + key + "/delete"%>>
-            <button style="background:#ffddd5" class="button" style="vertical-align:middle"><span>Delete (ノಠ益ಠ)ノ彡┻━┻</span></button>
+
+
+
+    <div class="row">
+
+     <div class="col-sm-4">
+
+      <div  style="background:transparent" class="well">
+        <% if(username !== undefined){ %>
+            <h5>Your username is: <%= username %></h5>
+              <form action="/logout" method="POST" style="margin:10px;">
+                <button style="background:#edd6ff" type="submit" value="Submit" class="btn btn-outline-primary"> (◕︵◕) Logout (◕︵◕)</button>
+              </form>
+          <% } else{ %>
+            <form action="/login" method="POST" style="margin:10px;">
+              <label for="username">Login:</label>
+              <input id="username" type="text" name="username" placeholder="username" style="width: 300px">
+              <button style="background:#edd6ff" type="submit" value="Submit"class="btn btn-outline-primary">Enter</button>
             </form>
-            <form method="POST" action=<%= "/urls/" + key%>>
-            <button style="background:#d5f7ff " class="button" style="vertical-align: middle"><span>Edit (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</span></button>
-            </form>
-            <br>
-          <%};%>
-        </ul>
-        <h4><a><a href = "http://localhost:8080/urls/new"> 💇trim splitends💇</a></h4>
+          <% } %>
+
+      </div>
+
     </div>
+
+      <div class="col-sm-8">
+
+        <div style="background:transparent" style="background:#d5ffdd" class="jumbotron"><h1>
+        <strong>Fresh Cuts</strong></h1>
+          <ul>
+            <%for(var key in urls) {%>
+              <%=key + ' ☜-(ΘLΘ)-☞ ' + urls[key]%>
+              <form method="POST" action=<%= "/urls/" + key + "/delete"%>>
+              <button style="background:#ffddd5" class="button" style="vertical-align:middle"><span>Delete (ノಠ益ಠ)ノ彡┻━┻</span></button>
+              </form>
+              <form method="POST" action=<%= "/urls/" + key%>>
+              <button style="background:#d5f7ff " class="button" style="vertical-align: middle"><span>Edit (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</span></button>
+              </form>
+              <br>
+            <%};%>
+          </ul>
+         <h4><a><a href = "http://localhost:8080/urls/new"> 💇trim splitends💇</a></h4>
+        </div>
+
+      </div>
+
+    </div>
+
   </main>
 
   <footer>
