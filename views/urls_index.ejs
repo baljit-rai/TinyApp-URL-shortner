@@ -14,6 +14,7 @@ body {
   <%include ./partials/headers.ejs%>
   </header>
   <main>
+<<<<<<< HEAD
 
 
 
@@ -37,6 +38,45 @@ body {
 
       </div>
 
+=======
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="well">
+          <% if(username !== undefined){ %>
+            <h5>Your username is: <%= username %></h5>
+              <form action="/logout" method="POST" style="margin:10px;">
+                <button type="submit" value="Submit" class="btn btn-outline-primary">Logout ✌️</button>
+              </form>
+            <% } else{ %>
+              <form action="/login" method="POST" style="margin:10px;">
+                <label for="username">Login:</label>
+                <input id="username" type="text" name="username" placeholder="username" style="width: 200px">
+                <button type="submit" value="Submit"class="btn btn-outline-primary">Enter</button>
+              </form>
+            <% } %>
+
+        </div>
+      </div>
+
+      <div class="col-sm-8">
+
+        <div style="background:#d5ffdd" class="jumbotron"><h1>
+        <strong>Fresh Cuts</strong></h1>
+          <ul>
+            <%for(var key in urls) {%>
+            <%=key + ' ☜-(ΘLΘ)-☞ ' + urls[key]%>
+            <form method="POST" action=<%= "/urls/" + key + "/delete"%>>
+            <button style="background:#ffddd5" class="button" style="vertical-align:middle"><span>Delete (ノಠ益ಠ)ノ彡┻━┻</span></button>
+            </form>
+            <form method="POST" action=<%= "/urls/" + key%>>
+            <button style="background:#d5f7ff " class="button" style="vertical-align: middle"><span>Edit (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</span></button>
+            </form>
+            <br>
+            <%};%>
+          </ul>
+          <h4><a><a href = "http://localhost:8080/urls/new"> 💇trim splitends💇</a></h4>
+      </div>
+>>>>>>> feature/cookies
     </div>
 
       <div class="col-sm-8">
