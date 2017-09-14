@@ -166,12 +166,12 @@ app.post("/urls/:id/update", (req, result) => {
 app.post("/login", (req, res) => { //recieves cooking and redirects
   res.cookie('username', req.body.username);
   console.log(req.cookies.username);
-  res.redirect("/urls");
+  res.redirect("back");
 });
 //get a logout username and create a user cookie
 app.post("/logout", (req, res) => { //recieves cooking and redirects
   res.clearCookie('username');
-  res.redirect("/urls");
+  res.redirect("back");
 });
 //for returning the cookie to display back to user
 app.post("/urls", (req, res) => { //writes username cookie to server
