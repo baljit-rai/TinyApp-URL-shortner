@@ -3,18 +3,18 @@ const cookieParser = require('cookie-parser')
 const app = express();
 const PORT = process.env.PORT || 8080; // default port 8080
 const bodyParser = require("body-parser");
-const users = {
-  "userRandomID": {
+let users = {
+  "asX412": {
     id: "userRandomID",
     email: "user@example.com",
     password: "purple-monkey-dinosaur"
   },
-  "user2RandomID": {
+  "asdf452": {
     id: "user2RandomID",
     email: "user2@example.com",
     password: "dishwasher-funk"
   }
-}
+};
 
 
 app.use(cookieParser());
@@ -24,9 +24,18 @@ app.use(bodyParser.urlencoded({
 app.set("view engine", "ejs");
 
 let urlDatabase = {
-  "b2xVn2": "http://www.lighthouselabs.ca",
-  "9sm5xK": "http://www.google.com",
-  "5b4xy8": "http://www.facebook.com"
+  "b2xVn2": {
+    fullURL: "http://www.lighthouselabs.ca",
+    userPoster: "asX412"
+  },
+  "9sm5xK": {
+    fullURL: "http://www.google.com",
+    userPoster: "asX412"
+  },
+  "5b4xy8": {
+    fullURL: "http://www.facebook.com",
+    userPoster: "asdf452"
+  }
 };
 
 function generateRandomString() {
@@ -48,7 +57,10 @@ app.get("/urls/new", (req, result, user_id) => {
     longURL: urlDatabase[req.params.shorturl],
     user_id: req.cookies.user_id
   }
-  result.render("urls_new", templateVars);
+  if (req.cookies.user_id !== undefined) {
+    res.render("urls_new", templateVars)
+  }
+  result.redirect("urls/login");
 });
 // route to urlshortenedURL page to edit
 app.post("/urls/:shortURL", (req, result, user_id) => {
@@ -108,13 +120,6 @@ app.post("/urls", (req, res) => { //writes username cookie to server
   res.render("urls_index", templateVars);
 });
 
-app.get("/register", (req, res, user_id) => {
-  let templateVars = {
-    shorturl: req.params.shortURL,
-    targetURL: urlDatabase[req.params.shortURL],
-    user_id: req.cookies.user_id
-  }
-});
 
 app.post("/register", (req, res, user_id) => {
   let userEmail = req.body.email;
