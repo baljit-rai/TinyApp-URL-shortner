@@ -18,15 +18,15 @@ body {
     <div class="row">
       <div class="col-sm-4">
         <div style="background:transparent" class="well">
-          <% if(username !== undefined){ %>
-            <h5>Your username is: <%= username %></h5>
+          <% if(user_id !== undefined){ %>
+            <h5>Your user_id is: <%= user_id %></h5>
               <form action="/logout" method="POST" style="margin:10px;">
                 <button style="background:#edd6ff" type="submit" value="Submit" class="btn btn-outline-primary">Logout ✌️</button>
               </form>
             <% } else{ %>
               <form action="/login" method="POST" style="margin:10px;">
-                <label for="username">Login:</label>
-                <input id="username" type="text" name="username" placeholder="username" style="width: 200px">
+                <label for="user_id">Login:</label>
+                <input id="user_id" type="text" name="user_id" placeholder="user_id" style="width: 200px">
                 <button style="background:#edd6ff" type="submit" value="Submit"class="btn btn-outline-primary">Enter</button>
               </form>
             <% } %>
