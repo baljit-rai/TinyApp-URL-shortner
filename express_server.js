@@ -100,7 +100,6 @@ app.get("/urls/new", (req, res, user_id) => {
     longURL: urlDatabase[req.params.shorturl],
     user_id: req.session.user_id
   }
-  console.log("HELLO");
   if (req.session.user_id !== undefined) {
     return res.render("urls_new", templateVars);
   }
@@ -154,25 +153,7 @@ app.post("/urls", (req, res) => { //writes username cookie to server
   res.render("urls_index", templateVars);
 });
 
-
-// app.post("/register", (req, res, user_id) => {
-//   const password = req.body.password;
-//   const hashedPassword = bcrypt.hashSync(password, 10);
-//   let userEmail = req.body.email;
-//   let userEPass = req.body.password;
-//   let rString = generateRandomString();
-//   if (userEmail == false || userEmail == false) {
-//     res.send("404 ERROR. Enter a Valid User ID and/or Password");
-//   }
-//   users[rString] = {
-//     id: rString,
-//     email: userEmail,
-//     password: hashedPassword
-//   };
-//   res.session("user_id", users[rString].id);
-//   res.redirect("/urls");
-// });
-
+// register new user
 app.post("/register", (req, res, user_id) => {
   let uEu = req.body.email;
   let uEp = req.body.password;
@@ -215,18 +196,6 @@ app.post("/newLink", (req, res) => {
 });
 
 // get a login user_id/password and create a user cookie
-// app.post("/login", (req, res, user_id) => {
-//   let userEmail = req.body.email;
-//   let userEPass = req.body.password;
-//   for (id in users) {
-//     if (userEmail === users[id].email && bcrypt.compareSync(userEPass, users[id].password) === true) {
-//       req.session.user_id = id;
-//       res.redirect("/urls/new");
-//     }
-//   }
-//   res.send("NO USER EXISTS");
-// });
-
 app.post("/login", (req, res) => { //recieves cookie and redirects
   let uEu = req.body.email;
   let uEp = req.body.password;
