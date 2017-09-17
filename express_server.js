@@ -64,17 +64,6 @@ function generateRandomString() {
   return randomString;
 };
 
-// // route to urlDatabase (main page)
-// app.get("/urls", (req, result, user_id) => {
-//   let templateVars = {
-//     urls: urlDatabase,
-//     user_id: req.session.user_id
-//   };
-//   result.render("urls_index", templateVars);
-// });
-
-
-
 // route to urlDatabase (main page)
 app.get("/urls", (req, res, user_id) => {
   let filteredDatabase = {}; //filter session to show only user data when logged in
@@ -114,6 +103,8 @@ app.post("/urls/:shortURL", (req, res, user_id) => {
   }
   res.render("urls_new", templateVars);
 });
+
+
 app.get("/urls/register", (req, res, user_id) => {
   let templateVars = {
     shortURL: req.params.shortURL,
@@ -189,9 +180,6 @@ app.post("/newLink", (req, res) => {
     userPoster: req.session.user_id
   };
   console.log(urlDatabase);
-  //req.body.longURL; // redefine string
-  // var linkName = "Here's your link!"; // new link generated
-  // res.send(rString + ' ' + linkName.link(urlDatabase[rString])); // redirect to new linked page and insert string and new link
   res.redirect("/urls");
 });
 
