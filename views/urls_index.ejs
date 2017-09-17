@@ -40,7 +40,9 @@ body {
         <strong>Fresh Cuts</strong></h1>
           <ul>
             <%for(var key in urls) {%>
-            <%=key + ' ☜-(ΘLΘ)-☞ ' + urls[key]%>
+           <a href=<%= urls[key].fullURL %>><%= key %></a> <%= ' ☜-(ΘLΘ)-☞ ' + urls[key].fullURL%>
+           <br>
+           <% if(user_id !== undefined){ %>
             <form method="POST" action=<%= "/urls/" + key + "/delete"%>>
             <button style="background:#ffddd5" class="button" style="vertical-align:middle"><span>Delete (ノಠ益ಠ)ノ彡┻━┻</span></button>
             </form>
@@ -48,7 +50,7 @@ body {
             <button style="background:#d5f7ff " class="button" style="vertical-align: middle"><span>Edit (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</span></button>
             </form>
             <br>
-            <%};%>
+            <%} };%>
           </ul>
           <h4><a><a href = "http://localhost:8080/urls/new"> 💇trim splitends💇</a></h4>
       </div>
