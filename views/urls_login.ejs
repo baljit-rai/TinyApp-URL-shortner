@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<header>
-</header>
+<head>
+    <%include ./partials/head.ejs%>
+<style>
+body {
+  background-image: url("http://38.media.tumblr.com/ca96fc9d1fb99e7827ef1f417b4c81e9/tumblr_nly2xj1cPv1ra8swxo1_540.gif");
+  background-size: cover;
+}
+</style>
 
-<body>
-    <form action="/login" method="POST" style="margin:150px;">
-        <label for="email">Enter your email</label>
-        <input id="password" type="text" name="email" placeholder="📧" style="width: 300px">
-        <br>
-        <label for="password">Enter a password</label>
-        <input id="password" type="password" name="password" placeholder="🔒" style="width: 300px">
-        <br>
-        <input type="submit" value="Login">
-    </form>
-    <form action="/login" method="POST" style="margin:150px;">
-    </form>
+</head>
+
+<body class="container">
+  <header>
+  <%include ./partials/headers.ejs%>
+  </header>
+
+  <div style="background:transparent" class="row">
+      <div class="col-sm-8">
+        <div style="background:transparent" class="jumbotron">
+            <form action="/login" method="POST" style="margin:10px;">
+                <label for="email">Email</label>
+                <input id="password" type="text" name="email" placeholder="📧" style="width: 300px">
+                <br>
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password" placeholder="🔒" style="width: 300px">
+                <br>
+                <input style="background:#edd6ff" class="btn btn-outline-primary" type="submit" value="Login">
+            </form>
+            <form action="/login" method="POST" style="margin:150px;">
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

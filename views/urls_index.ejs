@@ -4,7 +4,7 @@
   <%include ./partials/head.ejs%>
 <style>
 body {
-  background-image: url("https://i.pinimg.com/originals/cd/58/3a/cd583ae0ba572e1a84846e5c5d30eb08.gif");
+  background-image: url("http://38.media.tumblr.com/ca96fc9d1fb99e7827ef1f417b4c81e9/tumblr_nly2xj1cPv1ra8swxo1_540.gif");
   background-size: cover;
 }
 </style>
@@ -16,38 +16,32 @@ body {
   <main>
 
     <div class="row">
-      <div class="col-sm-4">
-        <div style="background:transparent" class="well">
+      <div class="col-sm-3">
+        <div style="background:transparent" class="jumbotron">
           <% if(user_id !== undefined){ %>
-            <h5>Your user_id is: <%= user_id %></h5>
+            <h5><strong> Logged In:</strong> <%= user_id %></h5>
               <form action="/logout" method="POST" style="margin:10px;">
-                <button style="background:#edd6ff" type="submit" value="Submit" class="btn btn-outline-primary">Logout ✌️</button>
-              </form>
-            <% } else{ %>
-              <form action="/login" method="POST" style="margin:10px;">
-                <label for="user_id">Login:</label>
-                <input id="user_id" type="text" name="user_id" placeholder="user_id" style="width: 200px">
-                <button style="background:#edd6ff" type="submit" value="Submit"class="btn btn-outline-primary">Enter</button>
+                <button style="background:#edd6ff" type="submit" value="Submit" class="btn btn-outline-primary">◕︵◕) Logout (◕︵◕)</button>
               </form>
             <% } %>
 
         </div>
       </div>
 
-      <div class="col-sm-8">
+      <div class="col-sm-9">
 
         <div style="background:transparent" class="jumbotron"><h1>
-        <strong>Fresh Cuts</strong></h1>
+        <strong> ᵔᴥᵔ ity bity URLs ᵔᴥᵔ</strong></h1>
           <ul>
             <%for(var key in urls) {%>
-           <a href=<%= urls[key].fullURL %>><%= key %></a> <%= ' ☜-(ΘLΘ)-☞ ' + urls[key].fullURL%>
+           <strong><a href=<%= urls[key].fullURL %>><%= key %></a> <%= ' ☜-(ΘLΘ)-☞ ' + urls[key].fullURL%></strong>
            <br>
            <% if(user_id !== undefined){ %>
             <form method="POST" action=<%= "/urls/" + key + "/delete"%>>
-            <button style="background:#ffddd5" class="button" style="vertical-align:middle"><span>Delete (ノಠ益ಠ)ノ彡┻━┻</span></button>
+            <button style="background:#ffddd5" class="btn btn-outline-primary" style="vertical-align:middle"><span>Delete (ノಠ益ಠ)ノ彡┻━┻</span></button>
             </form>
             <form method="POST" action=<%= "/urls/" + key%>>
-            <button style="background:#d5f7ff " class="button" style="vertical-align: middle"><span>Edit (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</span></button>
+            <button style="background:#d5f7ff " class="btn btn-outline-primary" style="vertical-align: middle"><span>Edit (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</span></button>
             </form>
             <br>
             <%} };%>
