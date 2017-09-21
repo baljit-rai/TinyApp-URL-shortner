@@ -126,13 +126,22 @@ app.post("/urls", (req, result) => {
 });
 //   delete object.property
 app.post("/urls/:id/delete", (req, result) => {
-  delete(urlDatabase[req.params.id]); // delete my object id from the html form
-  result.redirect("http://localhost:8080/urls/"); // redirect to main page
+  if (req.session.user_id === urlDatabase[i].userPoster) {
+    delete(urlDatabase[req.params.id]); // delete my object id from the html form
+    return result.redirect("http://localhost:8080/urls/"); // redirect to main page
+  } else {
+    res.status(403).send('Incorrect User');
+  }
 });
 //   edit the value of the long url to the new input
 app.post("/urls/:id/update", (req, result) => {
-  urlDatabase[req.params.id] = req.body.longURL;
-  result.redirect("http://localhost:8080/urls/"); // redirect to main page
+  if (req.session.user_id === urlDatabase[i].userPoster) {
+    urlDatabase[req.params.id] = req.body.longURL;
+    return result.redirect("http://localhost:8080/urls/"); // redirect to main page
+  } else {
+    res.status(403).send('Incorrect User');
+  }
+
 });
 
 //for returning the cookie to display back to user
