@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.set('trust proxy', 1) // trust first proxy
+app.set('trust proxy', 0) // trust first proxy
 
 app.use(cookieSession({
   name: 'session',
@@ -80,7 +80,7 @@ app.get("/urls", (req, res, user_id) => {
     urls: filteredDatabase,
     user_id: req.session.user_id
   };
-  res.render("urls_index", templateVars);
+  return res.render("urls_index", templateVars);
 });
 // get request renders new tinyURL maker page
 app.get("/urls/new", (req, res, user_id) => {
@@ -92,7 +92,7 @@ app.get("/urls/new", (req, res, user_id) => {
   if (req.session.user_id !== undefined) {
     return res.render("urls_new", templateVars);
   }
-  res.redirect('/urls/login');
+  return res.redirect('/urls/login');
 });
 // route to urlshortenedURL page to edit
 app.post("/urls/:shortURL", (req, res, user_id) => {
@@ -101,7 +101,7 @@ app.post("/urls/:shortURL", (req, res, user_id) => {
     targetURL: urlDatabase[req.params.shortURL].fullURL,
     user_id: req.session.user_id
   }
-  res.render("urls_new", templateVars);
+  return res.render("urls_new", templateVars);
 });
 
 
@@ -111,7 +111,7 @@ app.get("/urls/register", (req, res, user_id) => {
     targetURL: urlDatabase[req.params.shortURL],
     user_id: req.session.user_id
   }
-  res.render("urls_register", templateVars);
+  return res.render("urls_register", templateVars);
 });
 
 //new generated link page
@@ -122,7 +122,7 @@ app.post("/urls", (req, result) => {
   rString = generateRandomString(); // generate random string
   urlDatabase[rString] = req.body.longURL; // redefine string
 
-  result.redirect("/urls");
+  return result.redirect("/urls");
 });
 //   delete object.property
 app.post("/urls/:id/delete", (req, result) => {
@@ -150,7 +150,7 @@ app.post("/urls", (req, res) => { //writes username cookie to server
     user_id: req.session.user_id
   }
   res.session("user_id", req.body.user_id);
-  res.render("urls_index", templateVars);
+  return res.render("urls_index", templateVars);
 });
 
 // register new user
@@ -169,13 +169,13 @@ app.post("/register", (req, res, user_id) => {
   req.session.user_id = users[rString].id;
 
   // res.cookie('email', users[rString].email);
-  res.redirect('/urls');
+  return res.redirect('/urls');
 });
 
 
 app.get("/urls/login", (req, res, user_id) => {
   let templateVars = {};
-  res.render("urls_login", templateVars);
+  return res.render("urls_login", templateVars);
 });
 
 //new generated link page
@@ -189,7 +189,7 @@ app.post("/newLink", (req, res) => {
     userPoster: req.session.user_id
   };
   console.log(urlDatabase);
-  res.redirect("/urls");
+  return res.redirect("/urls");
 });
 
 // get a login user_id/password and create a user cookie
@@ -206,7 +206,7 @@ app.post("/login", (req, res) => { //recieves cookie and redirects
 
   if (founduser) {
     req.session.user_id = id;
-    res.redirect("/urls");
+    return res.redirect("/urls");
   } else {
     res.send("user does not exist");
   }
@@ -217,7 +217,7 @@ app.post("/login", (req, res) => { //recieves cookie and redirects
 //get logout user_id and create a user cookie
 app.post("/logout", (req, res) => {
   req.session = null;
-  res.redirect("/urls");
+  return res.redirect("/urls");
 });
 
 //returning the cookie to display back to the user
@@ -226,7 +226,7 @@ app.post("/urls", (req, res) => {
     user_id: req.session.user_id
   }
   res.session("user_id", req.body.user_id);
-  res.render("urls_index", templateVars);
+  return res.render("urls_index", templateVars);
 });
 
 
