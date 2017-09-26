@@ -101,7 +101,7 @@ app.post("/urls/:shortURL", (req, res, user_id) => {
     targetURL: urlDatabase[req.params.shortURL].fullURL,
     user_id: req.session.user_id
   }
-  return res.render("urls_new", templateVars);
+  return res.render("urls_show", templateVars);
 });
 
 
@@ -136,7 +136,7 @@ app.post("/urls/:id/delete", (req, result) => {
 //   edit the value of the long url to the new input
 app.post("/urls/:id/update", (req, result) => {
   if (req.session.user_id === urlDatabase[i].userPoster) {
-    urlDatabase[req.params.id] = req.body.longURL;
+    urlDatabase[req.params.id].fullURL = req.body.longURL;
     return result.redirect("http://localhost:8080/urls/"); // redirect to main page
   } else {
     res.status(403).send('Incorrect User');

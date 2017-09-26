@@ -2,24 +2,48 @@
 <html lang="en">
 <head>
   <%include ./partials/head.ejs%>
+<style>
+body {
+  background-image: url("http://38.media.tumblr.com/ca96fc9d1fb99e7827ef1f417b4c81e9/tumblr_nly2xj1cPv1ra8swxo1_540.gif");
+  background-size: cover;
+}
+</style>
+
 </head>
 <body class="container">
+
   <header>
   <%include ./partials/headers.ejs%>
   </header>
   <main>
-    <div style="background:#d5ffdd" class="jumbotron"><h1>
-    <strong>ᕙ(⇀‸↼‶)ᕗ Choppin Them URLs Like Karate</strong></h1>
 
-      <form method="POST" style="margin:150px;" action=<%= '/urls/' + shortURL + '/update'%>>
-      <b>
-      <button style="background:#ffd5f7" class="button" style="vertical-align: middle"><span>Update</span></button>
-        <label for="longURL">Insert URL:</label>
-        <b>
-        <input class="searchBar" id="longURL" type="text" name="longURL" placeholder="https://" style="width: 300px">
-      </form>
-        <h4><a><a href = "http://localhost:8080/urls/new"> 💇trim splitends💇</a></h4>
-    </div>
+      <div class="row">
+      <div class="col-sm-3">
+        <div style="background:transparent" class="jumbotron">
+          <% if(user_id !== undefined){ %>
+            <h5><strong> Logged In:</strong> <%= user_id %></h5>
+              <form action="/logout" method="POST" style="margin:10px;">
+                <button style="background:#edd6ff" type="submit" value="Submit" class="btn btn-outline-primary">(◕︵◕) Logout (◕︵◕)</button>
+              </form>
+            <% } %>
+
+        </div>
+      </div>
+
+      <div class="col-sm-9">
+        <div style="background: transparent;" class="jumbotron"><h1>
+        <strong>ᕙ(⇀‸↼‶)ᕗ Choppin Them URLs Like Karate</strong></h1>
+
+          <form method="POST" style="margin:150px;" action=<%= '/urls/' + shortURL + '/update'%>>
+
+            <label for="longURL">Insert URL:</label>
+            <b>
+            <input class="searchBar" id="longURL" type="text" name="longURL" placeholder="https://" style="width: 300px">
+             <b>
+          <button style="background:#edd6ff" class="btn btn-outline-primary" style="vertical-align: middle"><span>Update</span></button>
+          </form>
+            <h4><a><a href = "http://localhost:8080/urls/new"> 💇trim splitends💇</a></h4>
+        </div>
   </main>
 
   <footer>
