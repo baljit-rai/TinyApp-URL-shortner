@@ -8,3 +8,17 @@ TinyApp is a full stack web application built with Node and Express that allows 
 !["Login or Register to start making your own tiny urls"](https://github.com/baljit-rai/TinyApp-URL-shortner/blob/master/docs/Screen%20Shot%202017-10-08%20at%2012.15.28%20PM.png)
 !["Pick a url and give it a trim"](https://github.com/baljit-rai/TinyApp-URL-shortner/blob/master/docs/Screen%20Shot%202017-10-08%20at%2012.17.48%20PM.png)
 !["View all your urls and edit/delete them as you please"](https://github.com/baljit-rai/TinyApp-URL-shortner/blob/master/docs/Screen%20Shot%202017-10-08%20at%2012.18.05%20PM.png)
+
+## Dependencies
+
+- Node.js
+- Express
+- EJS
+- bcrypt
+- body-parser
+- cookie-session
+
+## Getting Started
+
+- Install all dependencies (using the `npm install` command).
+- Run the development web server unsing the `node express_server.js` command.
